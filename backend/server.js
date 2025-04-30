@@ -34,7 +34,16 @@ app.post('/insert',(req,res)=>{
      return res.status(200).json(result)
      })
 })
+app.delete('/delete/:id',(req,res)=>{
+     const id=req.params.id;
+     const sql="DELETE FROM users WHERE id=?";
+     db.query(sql,[id],(err,result)=>{
+          if(err) return res.status(400).json("Failed to delete")
+     return res.status(200).json(result)
+     
+     })
 
+})
 app.listen(3000,()=>{
      console.log("Server is running on http://localhost:3000")
 })
