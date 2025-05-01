@@ -44,6 +44,15 @@ app.delete('/delete/:id',(req,res)=>{
      })
 
 })
+app.put('/update/:id',(req,res)=>{
+     const id=req.params.id;
+     const {username,password}=req.body;
+     const sql="UPDATE users SET username=?,password=? WHERE id=?";
+     db.query(sql,[username,password,id],(err,result)=>{
+          if(err) return res.status(400).json("Failed to update")
+     return res.status(200).json(result)
+     })
+})
 app.listen(3000,()=>{
      console.log("Server is running on http://localhost:3000")
 })
