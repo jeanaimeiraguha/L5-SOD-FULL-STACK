@@ -9,7 +9,6 @@ const Update = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-   
     axios.get(`http://localhost:5000/select/${id}`)
       .then((res) => {
         setUsername(res.data.username);
@@ -28,7 +27,7 @@ const Update = () => {
     })
       .then(() => {
         alert("User updated successfully");
-        navigate('/select'); 
+        navigate('/select');
       })
       .catch((err) => {
         console.error("Update failed", err);
@@ -49,28 +48,28 @@ const Update = () => {
   };
 
   return (
-    <div>
-      <h2>Update User</h2>
+    <div className="container mt-4">
+      <h2 className="text-center mb-4">Update User</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
+        <div className="mb-3">
+          <label className="form-label">Username</label>
           <input
             type="text"
+            className="form-control"
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
-        </label>
-        <br />
-        <label>
-          Password:
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Password</label>
           <input
             type="password"
+            className="form-control"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-        </label>
-        <br />
-        <button type="submit">Update</button>
+        </div>
+        <button type="submit" className="btn btn-primary">Update</button>
       </form>
     </div>
   );
