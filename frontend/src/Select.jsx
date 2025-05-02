@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import {useNavigate } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Link ,useParams} from 'react-router-dom';
 const Select = () => {
   const [users, setUsers] = useState([""]);
-  // const navigate = useNavigate();
+  const{id}=useParams()
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  
+    // fetchUsers();
     axios.get("http://localhost:5000/select")
       .then((res) => {
         setUsers(res.data);
@@ -18,12 +16,14 @@ const Select = () => {
       .catch((err) => {
         console.log("Failed to fetch users", err);
       });
+  }, [id]);
   
 
   const handleDelete = (id) => {
     axios.delete(`http://localhost:5000/delete/${id}`)
       .then((res) => {
         alert("User deleted");
+        navigate('/select')
         
       })
       .catch((err) => {
@@ -34,6 +34,7 @@ const Select = () => {
   return (
     <>
       <h2>List Of Users</h2>
+     <Link to="/insert">Add</Link>
       {/* <Link to="/insert">Add</Link> */}
       <table border={2}>
         <thead>
@@ -50,11 +51,14 @@ const Select = () => {
               <td>{user.id}</td>
               <td>{user.username}</td>
               <td>{user.password}</td>
+              
               <td>
-                <button onClick={() => navigate(`/update/${user.id}`)}>Update</button>
-              </td>
-              <td>
+             
+  {/* <Link to={`/delete/${user.id}`}>Delete</Link> */}
+
                 <button onClick={() => handleDelete(user.id)}>Delete</button>
+                <Link to={`/update/${user.id}`}>Update</Link>
+                {/* <Link to={`/delete/${user.id}`}>Delete</Link> */}
               </td>
             </tr>
           ))}

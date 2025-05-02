@@ -55,7 +55,10 @@ const Delete=()=>{
      },[id])
      return(
           <>
-          
+          <script>
+               alert("Are you sure you want to delete this user?")
+          </script>
+          <button onClick={handleDelete}>Delete</button>
           </>
      )
 }

@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Insert = () => {
-    // const navigate=useNavigate()
+    const navigate=useNavigate()
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
 
@@ -18,7 +18,7 @@ const Insert = () => {
         axios.post("http://localhost:5000/insert", { username, password })
             .then((res) => {
                 alert("User added successfully");
-                // navigate('/select')
+                navigate('/select')
             })
             .catch((err) => {
                 console.log("Failed", err);
