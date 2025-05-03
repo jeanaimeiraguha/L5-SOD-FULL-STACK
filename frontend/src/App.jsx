@@ -4,11 +4,13 @@ import Insert from "./Insert";
 import Select from "./Select";
 import Delete from "./Delete";
 import Update from "./Update";
+import Hellotl from "./Hellotl";
 // Import the Bootstrap CSS directly
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (
+    
     <Router>
       <div className="container mt-4">
         <h2 className="text-center mb-4 text-primary">React CRUD App</h2>
@@ -24,10 +26,12 @@ const App = () => {
             <Route path="/update/:id" element={<Update />} />
             <Route path="/delete/:id" element={<Delete />} />
           </Routes>
+          <Hellotl/>
         </div>
       </div>
     </Router>
   );
+  
 };
 
 export default App;
